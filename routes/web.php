@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeveloperController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view("", 'index')->name('index');
+
+Route::prefix('developer')->name('developer.')->group(function () {
+    Route::get('', [DeveloperController::class, 'index'])->name('index');
 });
