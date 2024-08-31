@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('customer_id'); // предполагается, что есть таблица customers
+            $table->string('client'); // предполагается, что есть таблица customers
+            // $table->timestamp('start_date');
             $table->timestamps();
+
         });
 
     }

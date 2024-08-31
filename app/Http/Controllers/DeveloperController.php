@@ -15,37 +15,74 @@ class DeveloperController extends Controller
             'developers' => $developers
         ]);
     }
-    public function store(Request $request)
+    public function create()
     {
+        return view('developer.create');
+    }
+    public function store(Request $request)
+     {
         $request->validate([
             'full_name' => 'required|string|max:255',
-            'position' => 'required|string|in:программист,администратор,devops,дизайнер',
+            'position' => 'required|string|max:255',//in:программист,администратор,devops,дизайнер',
             'email' => 'nullable|email|max:255',
             'contact_phone' => 'nullable|string|max:15',
-            'project_id' => 'nullable|exists:projects,id',
+            'project_id' =>  'nullable|exists:projects,id'
+
         ]);
 
-        Developer::create($request->all());
+           $developers = new Developer();
+        // dd($developer);
 
-        return redirect()->route('developers.index');
+           $developers->full_name = $request->full_name;
+           $developers->position = $request->position;
+           $developers->email = $request->email;
+           $developers->contact_phone = $request->contact_phone;
+           $developers->project_id = $request->project_id;
+        //    $developers->save();
+        //    return redirect()->back();
+        dd($developers);
+           if ($developers->save()) {
+            return redirect()->back()->with('success', 'Разработчик успешно добавлен.');
+        } else {
+            return redirect()->back()->with('error', 'Произошла ошибка при сохранении данных.');
+        }
+
+        // Developer::create($request->all());
+
+        // return redirect()->route('developer.index');
     }
-
-    public function transfer(Request $request, Developer $developer)
+    public function update(Request $request,$id)
     {
-        $request->validate([
-            'project_id' => 'required|exists:projects,id',
-        ]);
+        $developers = Developer::find($id);
 
-        $developer->update(['project_id' => $request->project_id]);
+       $developers->full_name = $request->full_name;
+       $developers->position = $request->position;
+       $developers->email = $request->email;
+       $developers->contact_phone = $request->contact_phone;
+       $developers->project_id = $request->project_id;
+       $developers->save();
+       return redirect()->back();
 
-        return redirect()->route('developers.show', $developer);
-    }
+    // Developer::create($request->all());
 
-    public function destroy(Project $project)
-    {
-        $project->developers()->update(['project_id' => null]); // Освобождаем всех разработчиков из проекта
-        $project->delete();
+    // return redirect()->route('developer.index');
+}
+    // public function transfer(Request $request, Developer $developer)
+    // {
+    //     $request->validate([
+    //         'project_id' => 'required|exists:projects,id',
+    //     ]);
 
-        return redirect()->route('projects.index');
-    }
+    //     $developer->update(['project_id' => $request->project_id]);
+
+    //     return redirect()->route('developers.show', $developer);
+    // }
+
+    // public function destroy(Project $project)
+    // {
+    //     $project->developers()->update(['project_id' => null]); // Освобождаем всех разработчиков из проекта
+    //     $project->delete();
+
+    //     return redirect()->route('projects.index');
+    // }
 }

@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('developers', function (Blueprint $table) {
             $table->id();
+            $table->date('birth_date');
             $table->string('full_name');
             $table->string('position'); // программист, администратор, devops, дизайнер
             $table->string('email')->nullable();
             $table->string('contact_phone')->nullable();
             $table->foreignId('project_id')->nullable()->constrained()->nullOnDelete();
+            $table->timestamp('start_date');
             $table->timestamps();
         });
 
