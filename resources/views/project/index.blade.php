@@ -29,5 +29,5 @@
                 </tbody>
             </table>
     </div>
-
+    <a href="{{ route('index') }}" class="btn btn-danger">Назад</a>
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Developer extends Model
 {
-    protected $fillable = ['full_name', 'position', 'email', 'contact_phone', 'project_id'];
+    protected $fillable = ['full_name', 'position', 'email', 'contact_phone','project_id'];// 'project_id'
 
     public function project()
     {
