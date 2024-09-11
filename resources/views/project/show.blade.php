@@ -19,6 +19,20 @@
         <div class="col-6">{{$project->client}}</div>
     </div>
     <hr>
+    <div class="row">
+        <div class="col-6"><h6>Заказчик</h6></div>
+        <div class="col-6">{{$project->customer}}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-6"><h6>Разработчик</h6></div>
+        <div class="col-6">
+            @foreach($developers as $developer)
+                <p>{{ $developer->full_name }}</p>
+            @endforeach
+        </div>
+    </div>
+    <hr>
     {{-- <div class="row">
         <div class="col-6"><h6>start_date</h6></div>
         <div class="col-6">{{$project->start_date}}</div>

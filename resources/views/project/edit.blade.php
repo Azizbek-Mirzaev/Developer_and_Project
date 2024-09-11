@@ -25,6 +25,15 @@
                        value="{{ $project->client }}"
                        required>
             </div>
+            <div class="form-goup">
+                <label for="customer">Заказчик</label>
+                <input type="customer"
+                       id="customer"
+                       name='customer'
+                       class="form-control"
+                       value="{{ $project->customer }}"
+                       required>
+            </div>
             {{-- <div class="form-goup">
                 <label for="start_date">start_date</label>
                 <input type="datetime-local"

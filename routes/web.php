@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DeveloperController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,4 +62,24 @@ Route::prefix('developer')->name('developer.')->group(function () {
 
     Route::get('delete/{id}', [DeveloperController::class, 'delete'])
     ->name('delete');
+
+    Route::get('developer/{developer}/transfer',
+    [DeveloperController::class, 'transferToProject'])->name('transfer');
 });
+
+
+Route::prefix('statistiсs')->name('statistiсs.')->group(function ()
+{
+    Route::get('', [MainController::class, 'index'])->name('index');
+
+
+
+
+});
+
+
+Route::get('/statistics/project_count', [MainController::class, 'projectCount'])->name('project_count');
+
+Route::get('/statistics/developer_count', [MainController::class, 'developerCount'])->name('developer_count');
+
+Route::get('/statistics/average_age', [MainController::class, 'averageAge'])->name('averageAge');

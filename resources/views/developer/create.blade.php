@@ -42,14 +42,24 @@
                        class="form-control"
                        required>
             </div>
-            <div class="form-goup">
-                <label for="project_id">Разрабатываемый проект</label>
-                <input type="project_id"
-                       placeholder="Введите Разрабатываемый проект"
-                       id="project_id"
-                       name='project_id'
+            <div class="form-group">
+                <label for="birthdate">Сколько вам лет</label>
+                <input type="birthdate"
+                       placeholder="Введите Сколько вам лет"
+                       name="birthdate"
+                       id="birthdate"
                        class="form-control"
                        required>
+            </div>
+            <div class="form-goup">
+                <label for="project_id">Разрабатываемый проект</label>
+                       <select class="custom-select"
+                        name="project_id"
+                        id="project_id">
+                        @foreach($projects as $project)
+                        <option value="{{  $project->id }}">{{  $project->name }}</option>
+                        @endforeach
+                       </select>
             </div>
 
             {{-- <div class="form-goup">
@@ -65,6 +75,27 @@
 
             <button class="btn btn-primary" type="submit">Сохранить</button>
         </form>
+        <div class="mt-3">
+            <div class="mt-3">
+                {{-- <form action="{{ route('developer.transfer', $developer) }}"
+                    method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <label for="project_id">Новый проект:</label>
+                    <select name="project_id"
+                            id="project_id" required>
+                        @foreach($projects as $project)
+                            <option value="{{ $project->id }}"
+                                {{ $developer->project_id == $project->id ? 'selected' : '' }}>
+                                {{ $project->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <button type="submit">Перевести</button> --}}
+                </form>
+
+        </div>
     </div>
     <br><a href="{{ route('developer.index') }}" class="btn btn-danger">Назад</a>
 @endsection

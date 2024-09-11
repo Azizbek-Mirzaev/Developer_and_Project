@@ -1,5 +1,5 @@
 @extends('parts.layout')
-@section('title', "GLAVNAYA STRANITSA")
+@section('title','Изменить')
 @section('content')
-GLAVNAYA
+WTF
 @endsection

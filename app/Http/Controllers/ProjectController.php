@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Developer;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::query()->paginate();
+        $projects = Project::orderBy('created_at','desc')->get();
         return view('project.index', compact('projects'));
     }
 
@@ -22,15 +23,18 @@ class ProjectController extends Controller
     {
         $request->validate([
             'name'=>'required|string|max:100',
-            'client'=>'required|string|max:999'
+            'client'=>'required|string|max:999',
+            'customer'=>'required|string|max:999',
+            'is_actual'=>'nullable|bool'
           ]);
        $project = new Project();
     //    dd($project);
        $project->name = $request->name;
        $project->client = $request->client;
-
+       $project->customer = $request->customer;
+       $project->is_actual = (bool)$request->is_actual;
        $project->save();
-       return redirect()->back();
+       return redirect()->route('project.index');
         //dd($category);//return view('admin.category.store');
     }
 
@@ -38,7 +42,8 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         return view('project.show',[
-            'project'=> $project]);
+            'project'=> $project,
+            'developers' => Developer::all()]);
     }
 
     public function edit($id)
@@ -56,13 +61,16 @@ class ProjectController extends Controller
     }
 
     public function update(Request $request, $id) {
+
         $project = Project::find($id);
 
         $project->name = $request->name;
         $project->client = $request->client;
+        $project->customer = $request->customer;
+        $project->is_actual = (bool)$request->is_actual;
 
         $project->save();
-        return redirect()->back();
+        return redirect()->route('project.index');;
 
         // return redirect()->route('admin.article.index');
     }

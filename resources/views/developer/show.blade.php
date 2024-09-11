@@ -31,7 +31,7 @@
     <hr>
     <div class="row">
         <div class="col-6"><h6>Разрабатываемый проект</h6></div>
-        <div class="col-6">{{$developers->project_id}}</div>
+        <div class="col-6">{{$developers->project->name}}</div>
     </div>
     <hr>
     {{-- <div class="row">

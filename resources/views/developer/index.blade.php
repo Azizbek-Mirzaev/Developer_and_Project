@@ -1,5 +1,5 @@
 @extends('parts.layout')
-@section('title', 'Проекты')
+@section('title', 'Разработчики')
 @section('content')
     <div class="mt-3">
             <a href="{{ route('developer.create') }}" class="btn btn-success">Создать</a>
@@ -11,6 +11,7 @@
                 <th>Должность</th>
                 <th>Электронная почта</th>
                 <th>Контактный телефон</th>
+                <th>Сколько вам лет</th>
                 <th>Разрабатываемый проект</th>
                 <th>CRUD</th>
             </thead>
@@ -22,11 +23,13 @@
                             <td>{{ $developer->position }}</td>
                             <td>{{ $developer->email }}</td>
                             <td>{{ $developer->contact_phone }}</td>
-                            <td>{{ $developer->project_id }}</td>
+                            <td>{{ $developer->birthdate }}</td>
+                            <td>{{ $developer->project->name }}</td>
                             <td>
-                                <a href="{{ route('developer.show', $developer->id, $developer->full_name,$developer->position,$developer->email,$developer->project_id ) }}">Посмотреть </a><br>
+                                <a href="{{ route('developer.show', $developer->id, $developer->full_name,$developer->position,$developer->email,$developer->project_id) }}">Посмотреть </a><br>
                                 <a href="{{ route('developer.edit', $developer->id, $developer->full_name,$developer->position,$developer->email,$developer->project_id) }}">Изминить </a><br>
-                                <a href="{{ route('developer.delete', $developer->id, $developer->full_name,$developer->position,$developer->email,$developer->project_id ) }}">Удалить </a><br>
+                                {{-- <a href="{{ route('developer.transfer',$developer->id, $developer->full_name,$developer->position,$developer->email,$developer->project_id) }}">Перевод Разработчика </a><br> --}}
+                                <a href="{{ route('developer.delete', $developer->id, $developer->full_name,$developer->position,$developer->email,$developer->project_id) }}">Удалить </a><br>
                                 {{-- <a href="{{ route('project.edit', $project->id, $project->name) }}">Изминить</a><br>
                                 <a href="{{ route('project.delete', $project->id, $project->name) }}">Удалить</a><br> --}}
                             </td>

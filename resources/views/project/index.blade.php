@@ -7,7 +7,8 @@
             <thead>
                 <th>№</th>
                 <th>Наимнование проекта </th>
-                <th>Ф.И.О. Разработчика</th>
+                <th>Команда Разработчиков</th>
+                <th>Заказчик</th>
                 <th>CRUD</th>
             </thead>
                 <tbody>
@@ -16,6 +17,7 @@
                             <td>{{ $project->id }}</td>
                             <td>{{ $project->name }}</td>
                             <td>{{ $project->client }}</td>
+                            <td>{{ $project->customer }}</td>
 
                             <td>
                                 <a href="{{ route('project.show', $project->id, $project->name,$project->client ) }}">Посмотреть </a><br>

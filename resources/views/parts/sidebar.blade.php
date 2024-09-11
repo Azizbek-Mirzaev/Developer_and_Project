@@ -53,9 +53,34 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('averageAge') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Средний возраст сотрудников
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('project_count') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Количество проектов
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('developer_count') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Количество сотрудников
+                        </p>
+                    </a>
+                </li>
               </ul>
           </nav>
           <!-- /.sidebar-menu -->
       </div>
+    </div>
       <!-- /.sidebar -->
   </aside>

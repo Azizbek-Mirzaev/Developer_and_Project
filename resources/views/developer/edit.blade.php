@@ -50,6 +50,33 @@
                        value="{{ $developers->contact_phone }}"
                        required>
             </div>
+            <div class="form-group">
+                <label for="birthdate">Сколько вам лет</label>
+                <input type="birthdate"
+                       placeholder="Введите Сколько вам лет"
+                       name="birthdate"
+                       id="birthdate"
+                       class="form-control"
+                       value="{{ $developers->birthdate }}"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="project_id">Разрабатываемый проект</label>
+                {{-- <input type="project_id"
+                       placeholder="Разрабатываемый проект" --}}
+                       {{-- name="project_id"
+                       id="project_id"
+                       class="form-control" --}}
+                       <select class="custom-select"
+                        name="project_id"
+                        id="project_id">
+                       @foreach($projects as $project)
+                       <option value="{{  $project->id }}">{{  $project->name }}</option>
+                       @endforeach
+                    </select>
+                       {{-- value="{{ $developers->project->name }}" --}}
+                       {{-- required> --}}
+            </div>
             {{-- <div class="form-goup">
                 <label for="project_id">Разрабатываемый проект</label>
                 <input type="project_id"
